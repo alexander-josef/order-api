@@ -5,18 +5,19 @@ import chaiHttp = require('chai-http')
 import 'mocha'
 import app from '../../src/app'
 import User from '../../src/model/User'
+
  chai.use(chaiHttp)
  const expect = chai.expect
  const user: User = {
   // generic random value from 1 to 100 only for tests so far
-  id: Math.floor(Math.random() * 100) + 1,
-  username: 'John',
-  firstName: 'John',
-  lastName: 'Doe',
   email: 'jhon@myemail.com',
+  firstName: 'John',
+  id: Math.floor(Math.random() * 100) + 1,
+  lastName: 'Doe',
   password: 'password',
   phone: '5555555',
   userStatus: 1,
+  username: 'John',
 }
  describe('userRoute', () => {
   it('should respond with HTTP 404 status because there is no user', async () => {
