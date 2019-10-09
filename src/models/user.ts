@@ -1,6 +1,6 @@
 'use strict'
  export default interface User {
-  id: Number
+  // id: Number
   username: String
   firstName: String
   lastName: String

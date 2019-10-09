@@ -1,1 +1,4 @@
 node_modules
+dist
+.stryker-tmp
+package-lock.json

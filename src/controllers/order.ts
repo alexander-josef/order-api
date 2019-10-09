@@ -1,37 +1,77 @@
 import { NextFunction, Request, Response } from 'express'
+import * as halson from 'halson'
 import * as _ from 'lodash'
-import { default as Order } from '../model/order'
-import { OrderStatus } from '../model/orderStatus'
- let orders: Array<Order> = []
- export let getOrder = (req: Request, res: Response, next: NextFunction) => {
+import { OrderModel } from '../schemas/order'
+import { UserModel } from '../schemas/User'
+import { formatOutput } from '../utility/orderApiUtility'
+
+export let getOrder = (req: Request, res: Response, next: NextFunction) => {
   const id = req.params.id
-  const order = orders.find(obj => obj.id === Number(id))
-  const httpStatusCode = order ? 200 : 404
-  return res.status(httpStatusCode).send(order)
+  OrderModel.findById(id, (err, order) => {
+    if (!order) {
+      return res.status(404).send()
+    }
+    order = halson(order.toJSON()).addLink('self', `/store/orders/${order.id}`)
+    return formatOutput(res, order, 200, 'order')
+  })
 }
- export let addOrder = (req: Request, res: Response, next: NextFunction) => {
-  const order: Order = {
-    // generic random value from 1 to 100 only for tests so far
-    id: Math.floor(Math.random() * 100) + 1,
-    userId: req.body.userId,
-    quantity: req.body.quantity,
-    shipDate: req.body.shipDate,
-    status: OrderStatus.Placed,
-    complete: false,
-  }
-  orders.push(order)
-  return res.status(201).send(order)
+
+export let getAllOrders = (req: Request, res: Response, next: NextFunction) => {
+  const limit = Number(req.query.limit) || 0
+  const offset = Number(req.query.offset) || 0
+
+  OrderModel.find({}, null, { skip: offset, limit: limit }).then(orders => {
+    if (orders) {
+      orders = orders.map(order => {
+        return halson(order.toJSON())
+          .addLink('self', `/store/orders/${order.id}`)
+          .addLink('user', {
+            href: `/users/${order.userId}`,
+          })
+      })
+    }
+    return formatOutput(res, orders, 200, 'order')
+  })
 }
- export let removeOrder = (req: Request, res: Response, next: NextFunction) => {
-  const id = Number(req.params.id)
-  const orderIndex = orders.findIndex(item => item.id === id)
- if (orderIndex === -1) {
-    return res.status(404).send()
-  }
- orders = orders.filter(item => item.id !== id)
- return res.status(204).send()
+
+export let addOrder = (req: Request, res: Response, next: NextFunction) => {
+  const userId = req.body.userId
+
+  UserModel.findById(userId, (err, user) => {
+    if (!user) {
+      return res.status(404).send()
+    }
+
+    const newOrder = new OrderModel(req.body)
+
+    newOrder.save((error, order) => {
+      order = halson(order.toJSON())
+        .addLink('self', `/store/orders/${order._id}`)
+        .addLink('user', {
+          href: `/users/${order.userId}`,
+        })
+
+      return formatOutput(res, order, 201, 'order')
+    })
+  })
 }
- export let getInventory = (req: Request, res: Response, next: NextFunction) => {
-  const grouppedOrders = _.groupBy(orders, 'userId')
-  return res.status(200).send(grouppedOrders)
+
+export let removeOrder = (req: Request, res: Response, next: NextFunction) => {
+  const id = req.params.id
+  OrderModel.findById(id, (err, order) => {
+    if (!order) {
+      return res.status(404).send()
+    }
+    order.remove(error => {
+      res.status(204).send()
+    })
+  })
+}
+
+export let getInventory = (req: Request, res: Response, next: NextFunction) => {
+  const status = req.query.status
+  OrderModel.find({ status: status }, (err, orders) => {
+    // orders = _.groupBy(orders, 'userId')
+    return formatOutput(res, _.groupBy(orders,'userId'), 200, 'inventory')
+  })
 }

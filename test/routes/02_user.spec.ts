@@ -4,15 +4,15 @@ import * as chai from 'chai'
 import chaiHttp = require('chai-http')
 import 'mocha'
 import app from '../../src/app'
-import User from '../../src/model/User'
+import {UserModel} from '../../src/schemas/User'
 
  chai.use(chaiHttp)
  const expect = chai.expect
- const user: User = {
+ const user =  {
   // generic random value from 1 to 100 only for tests so far
   email: 'jhon@myemail.com',
   firstName: 'John',
-  id: Math.floor(Math.random() * 100) + 1,
+  // id: Math.floor(Math.random() * 100) + 1,
   lastName: 'Doe',
   password: 'password',
   phone: '5555555',
@@ -20,6 +20,12 @@ import User from '../../src/model/User'
   username: 'John',
 }
  describe('userRoute', () => {
+
+  // before(async () => {
+    // expect(UserModel.modelName).to.be.equal('User')
+    // UserModel.collection.drop()
+  // })
+
   it('should respond with HTTP 404 status because there is no user', async () => {
     return chai
       .request(app)
@@ -48,16 +54,16 @@ import User from '../../src/model/User'
       })
   })
   it('should updated the user Jhon', async () => {
-    user.username = 'Jhon Updated'
-    user.firstName = 'Jhon Updated'
+    user.username = 'John Updated'
+    user.firstName = 'John Updated'
     user.lastName = 'Doe Updated'
-    user.email = 'jhon@myemail_updated.com'
+    user.email = 'John@myemail_updated.com'
     user.password = 'password Updated'
     user.phone = '3333333'
     user.userStatus = 12
  return chai
       .request(app)
-      .patch(`/users/Jhon`)
+      .patch(`/users/John`)
       .send(user)
       .then(res => {
         expect(res.status).to.be.equal(204)
