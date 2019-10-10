@@ -4,7 +4,7 @@ import * as chai from 'chai'
 import chaiHttp = require('chai-http')
 import 'mocha'
 import app from '../../src/app'
-import {UserModel} from '../../src/schemas/User'
+import {UserModel} from '../../src/schemas/user'
 
  chai.use(chaiHttp)
  const expect = chai.expect
@@ -21,10 +21,10 @@ import {UserModel} from '../../src/schemas/User'
 }
  describe('userRoute', () => {
 
-  // before(async () => {
-    // expect(UserModel.modelName).to.be.equal('User')
-    // UserModel.collection.drop()
-  // })
+  before(async () => {
+    expect(UserModel.modelName).to.be.equal('User')
+    UserModel.collection.drop()
+  })
 
   it('should respond with HTTP 404 status because there is no user', async () => {
     return chai

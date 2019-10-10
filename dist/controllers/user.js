@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const halson = require("halson");
-const User_1 = require("../schemas/User");
+const user_1 = require("../schemas/user");
 const orderApiUtility_1 = require("../utility/orderApiUtility");
 // not needed after DB
 // let users: Array<User> = []
 exports.getUser = (req, res, next) => {
     const username = req.params.username;
-    User_1.UserModel.findOne({ username: username }, (err, user) => {
+    user_1.UserModel.findOne({ username: username }, (err, user) => {
         if (!user) {
             return res.status(404).send();
         }
@@ -22,7 +22,7 @@ exports.getUser = (req, res, next) => {
     });
 };
 exports.addUser = (req, res, next) => {
-    const newUser = new User_1.UserModel(req.body);
+    const newUser = new user_1.UserModel(req.body);
     newUser.save((error, user) => {
         user = halson(user.toJSON().addLink('self', `/users/{user._id}`));
         return orderApiUtility_1.formatOutput(res, user, 201, 'user');
@@ -30,7 +30,7 @@ exports.addUser = (req, res, next) => {
 };
 exports.updateUser = (req, res, next) => {
     const username = req.params.username;
-    User_1.UserModel.findOne({ username: username }, (err, user) => {
+    user_1.UserModel.findOne({ username: username }, (err, user) => {
         if (!user) {
             res.status(404).send();
         }
@@ -49,7 +49,7 @@ exports.updateUser = (req, res, next) => {
 };
 exports.removeUser = (req, res, next) => {
     const username = req.params.username;
-    User_1.UserModel.findOne({ username: username }, (error, user) => {
+    user_1.UserModel.findOne({ username: username }, (error, user) => {
         if (!user) {
             return res.status(404).send();
         }

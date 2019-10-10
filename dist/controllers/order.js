@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const halson = require("halson");
 const _ = require("lodash");
 const order_1 = require("../schemas/order");
-const User_1 = require("../schemas/User");
+const user_1 = require("../schemas/user");
 const orderApiUtility_1 = require("../utility/orderApiUtility");
 exports.getOrder = (req, res, next) => {
     const id = req.params.id;
@@ -33,7 +33,7 @@ exports.getAllOrders = (req, res, next) => {
 };
 exports.addOrder = (req, res, next) => {
     const userId = req.body.userId;
-    User_1.UserModel.findById(userId, (err, user) => {
+    user_1.UserModel.findById(userId, (err, user) => {
         if (!user) {
             return res.status(404).send();
         }

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import * as halson from 'halson'
-import { UserModel } from '../schemas/User'
+import { UserModel } from '../schemas/user'
 import { formatOutput } from '../utility/orderApiUtility'
 
 // not needed after DB
