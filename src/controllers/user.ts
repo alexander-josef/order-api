@@ -35,7 +35,7 @@ export let addUser = (req: Request, res: Response, next: NextFunction) => {
   const newUser = new UserModel(req.body)
 
   newUser.save((error,user) => {
-    user = halson(user.toJSON().addLink('self',`/users/{user._id}`))
+    user = halson(user.toJSON()).addLink('self',`/users/${user._id}`)
     return formatOutput(res,user,201,'user')
   })
 }
@@ -47,7 +47,7 @@ export let updateUser = (req: Request, res: Response, next: NextFunction) => {
 
   UserModel.findOne({username:username},(err,user) =>{
     if(!user) {
-      res.status(404).send()
+      return res.status(404).send()
     }
 
 

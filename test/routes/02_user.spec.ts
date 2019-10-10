@@ -37,7 +37,7 @@ import {UserModel} from '../../src/schemas/user'
   it('should create a new user and retrieve it back', async () => {
     return chai
       .request(app)
-      .post('/users/')
+      .post('/users')
       .send(user)
       .then(res => {
         expect(res.status).to.be.equal(201)

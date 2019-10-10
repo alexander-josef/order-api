@@ -4,7 +4,6 @@ import * as chai from 'chai'
 import chaiHttp = require('chai-http')
 import 'mocha'
 import app from '../../src/app'
-import Order from '../../src/models/order'
 import { OrderStatus } from '../../src/models/orderStatus'
 import {OrderModel} from '../../src/schemas/order'
 
@@ -81,7 +80,7 @@ let orderIdCreated
       .get(`/store/orders/${orderIdCreated}`) // see _id from last response
       .then(res => {
         expect(res.status).to.be.equal(200)
-        expect(res.body.id).to.be.equal(orderIdCreated) // check if it's the same id (_id from response)
+        expect(res.body._id).to.be.equal(orderIdCreated) // check if it's the same id (_id from response)
         expect(res.body.status).to.be.equal(order.status)
       })
   })
@@ -112,7 +111,7 @@ let orderIdCreated
       .get(`/store/inventory?status=PLACED`)
       .then(res => {
         expect(res.status).to.be.equal(200)
-        expect(res.body[20].length).to.be.equal(1)
+        expect(res.body[order.userId].length).to.be.equal(1)
       })
   })
   it('should remove an existing order', async () => {

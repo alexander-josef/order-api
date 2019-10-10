@@ -24,7 +24,7 @@ exports.getUser = (req, res, next) => {
 exports.addUser = (req, res, next) => {
     const newUser = new user_1.UserModel(req.body);
     newUser.save((error, user) => {
-        user = halson(user.toJSON().addLink('self', `/users/{user._id}`));
+        user = halson(user.toJSON()).addLink('self', `/users/${user._id}`);
         return orderApiUtility_1.formatOutput(res, user, 201, 'user');
     });
 };
@@ -32,7 +32,7 @@ exports.updateUser = (req, res, next) => {
     const username = req.params.username;
     user_1.UserModel.findOne({ username: username }, (err, user) => {
         if (!user) {
-            res.status(404).send();
+            return res.status(404).send();
         }
         // todo: beautify with prettier? spaces
         user.username = req.body.username || user.username;
