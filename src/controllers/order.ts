@@ -71,7 +71,7 @@ export let removeOrder = (req: Request, res: Response, next: NextFunction) => {
 export let getInventory = (req: Request, res: Response, next: NextFunction) => {
   const status = req.query.status
   OrderModel.find({ status: status }, (err, orders) => {
-    // orders = _.groupBy(orders, 'userId')
-    return formatOutput(res, _.groupBy(orders,'userId'), 200, 'inventory')
+    const groupedOrders = _.groupBy(orders, 'userId')
+    return formatOutput(res, groupedOrders, 200, 'inventory')
   })
 }
