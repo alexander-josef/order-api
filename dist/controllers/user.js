@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const bcrypt = require("bcrypt");
 const halson = require("halson");
 const user_1 = require("../schemas/user");
 const orderApiUtility_1 = require("../utility/orderApiUtility");
@@ -23,6 +24,7 @@ exports.getUser = (req, res, next) => {
 };
 exports.addUser = (req, res, next) => {
     const newUser = new user_1.UserModel(req.body);
+    newUser.password = bcrypt.hashSync(newUser.password, 10);
     newUser.save((error, user) => {
         user = halson(user.toJSON()).addLink('self', `/users/${user._id}`);
         return orderApiUtility_1.formatOutput(res, user, 201, 'user');

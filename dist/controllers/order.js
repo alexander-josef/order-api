@@ -62,7 +62,7 @@ exports.removeOrder = (req, res, next) => {
 exports.getInventory = (req, res, next) => {
     const status = req.query.status;
     order_1.OrderModel.find({ status: status }, (err, orders) => {
-        // orders = _.groupBy(orders, 'userId')
-        return orderApiUtility_1.formatOutput(res, _.groupBy(orders, 'userId'), 200, 'inventory');
+        const groupedOrders = _.groupBy(orders, 'userId');
+        return orderApiUtility_1.formatOutput(res, groupedOrders, 200, 'inventory');
     });
 };
