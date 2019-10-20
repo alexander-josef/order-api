@@ -246,3 +246,27 @@ it('should create a new user for Order tests and retrieve it back', async () => 
 openssl req -newkey rsa:2048 -nodes -keyout keytemp.pem -x509 -days 365 -out cert.pem
 
 openssl rsa -in keytemp.pem -out key.pem
+
+
+import * as passport from 'passport'
+import { Strategy } from 'passport-jwt'
+import { ExtractJwt } from 'passport-jwt'
+ export class PassportConfiguration {
+  constructor() {
+    passport.use(
+      new Strategy(
+        {
+          secretOrKey: 'top_secret',
+          jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+        },
+        async (token, done) => {
+          try {
+            return done(null, token.user)
+          } catch (error) {
+            done(error)
+          }
+        }
+      )
+    )
+  }
+}

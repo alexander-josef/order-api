@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt = require("bcrypt");
 const halson = require("halson");
+const jwt = require("jsonwebtoken");
 const user_1 = require("../schemas/user");
 const orderApiUtility_1 = require("../utility/orderApiUtility");
 // not needed after DB
@@ -58,5 +59,25 @@ exports.removeUser = (req, res, next) => {
         user.remove(err => {
             return res.status(204).send();
         });
+    });
+};
+exports.login = (req, res, next) => {
+    const username = req.query.username;
+    const password = req.query.password;
+    user_1.UserModel.findOne({ username: username }, (err, user) => {
+        if (!user) {
+            // tslint:disable-next-line: no-console
+            console.log('not found');
+            return res.status(404).send();
+        }
+        const validate = bcrypt.compareSync(password, user.password.valueOf());
+        if (validate) {
+            const body = { _id: user._id, email: user.email };
+            const token = jwt.sign({ user: body }, 'top_secret');
+            return res.json({ token: token });
+        }
+        else {
+            return res.status(401).send();
+        }
     });
 };

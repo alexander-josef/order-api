@@ -38,8 +38,6 @@ let token
       const newUser = new UserModel(user)
       newUser.password = bcrypt.hashSync(newUser.password,10)
       await newUser.save((error,userCreated) => {
-        // tslint:disable-next-line: no-console
-        console.log('blabla')
         user._id = userCreated._id
         done()
       })
