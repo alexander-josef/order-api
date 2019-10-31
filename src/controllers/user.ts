@@ -38,6 +38,9 @@ export let addUser = (req: Request, res: Response, next: NextFunction) => {
   newUser.password = bcrypt.hashSync(newUser.password,10)
 
   newUser.save((error,user) => {
+    if (error) {
+      return res.status(500).send(error) // in case someone signs up with a already existing email address
+    }
     user = halson(user.toJSON()).addLink('self',`/users/${user._id}`)
     return formatOutput(res,user,201,'user')
   })

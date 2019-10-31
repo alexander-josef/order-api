@@ -60,6 +60,7 @@
     "@types/bcrypt": "^3.0.0",
     "@types/jsonwebtoken": "^8.3.4",
     "@types/lodash": "^4.14.141",
+    "@types/mongoose-unique-validator": "^1.0.3",
     "@types/passport": "^1.0.1",
     "@types/passport-jwt": "^3.0.2",
     "@types/passport-local": "^1.0.33",
@@ -71,6 +72,7 @@
     "js2xmlparser": "^4.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.3",
+    "mongoose-unique-validator": "^2.0.3",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0"
