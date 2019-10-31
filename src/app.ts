@@ -4,6 +4,7 @@ import * as mongoose from 'mongoose'
 import { APIRoute } from '../src/routes/api'
 import { OrderRoute } from '../src/routes/order'
 import { UserRoute } from '../src/routes/user'
+import * as errorHandler from '../src/utility/errorHandler'
 
 class App {
   public app: express.Application
@@ -20,6 +21,9 @@ class App {
     this.userRoutes.routes(this.app)
     this.orderRoutes.routes(this.app)
     this.mongoSetup()
+    this.app.use(errorHandler.logging)
+    this.app.use(errorHandler.clientErrorHandler)
+    this.app.use(errorHandler.errorHandler)
   }
 
   private mongoSetup(): void {
