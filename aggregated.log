@@ -78,3 +78,43 @@
 [2019-11-10T16:59:27.131Z] [info] => [DELETE][/store/orders/] 5dc841efb7edbdc07248bf24
 [2019-11-10T16:59:27.139Z] [info] => [DELETE][/store/orders/] 5dc841efb7edbdc07248bf24
 [2019-11-10T16:59:27.141Z] [warn] => [DELETE][/store/orders/:{orderId}] OrderID with Id 5dc841efb7edbdc07248bf24 not found 
+[2019-11-10T17:19:07.355Z] [info] => [Get][/users] NO_USER
+[2019-11-10T17:19:07.366Z] [info] => [GET] [/users/:{username}] user with username NO_USER not found.
+[2019-11-10T17:19:07.393Z] [info] => [POST][/users] { _id: null,
+  email: 'unique_email@email.com',
+  firstName: 'John',
+  lastName: 'Doe',
+  password: 'password',
+  phone: '5555555',
+  userStatus: 1,
+  username: 'John' }
+[2019-11-10T17:19:07.469Z] [info] => [Get][/users] John
+[2019-11-10T17:19:07.474Z] [info] => [PATCH][/users] John
+[2019-11-10T17:19:07.484Z] [info] => [Get][/users] John Updated
+[2019-11-10T17:19:07.487Z] [info] => [PATCH][/users] Mary
+[2019-11-10T17:19:07.489Z] [info] => [PATCH] [/users/:{username}] user with Mary not found.
+[2019-11-10T17:19:07.491Z] [warn] => [DELETE][/users] John Updated
+[2019-11-10T17:19:07.496Z] [warn] => [DELETE][/users] Mary
+[2019-11-10T17:19:07.498Z] [info] => [DELETE] [/users/:{username}] user with username Mary not found.
+[2019-11-10T17:19:07.574Z] [info] => [GET][/store/orders/]000
+[2019-11-10T17:19:07.575Z] [info] => [GET][/store/orders/:{orderId}] Order 000 not found.
+[2019-11-10T17:19:07.609Z] [info] => [POST][/users] { _id: 5dc8468bbf29a7c20cbfcc29,
+  username: 'OrderUser',
+  firstName: 'Order',
+  lastName: 'User',
+  email: 'order@myemail.com',
+  password: 'password',
+  phone: '5555555',
+  userStatus: 1 }
+[2019-11-10T17:19:07.685Z] [info] => [POST][/store/orders/] 5dc8468bbf29a7c20cbfcc29
+[2019-11-10T17:19:07.689Z] [info] => [POST][/store/orders/] { _id: 5dc8468bbf29a7c20cbfcc2a,
+  userId: 5dc8468bbf29a7c20cbfcc29,
+  quantity: 1,
+  shipDate: 2019-11-10T17:19:06.983Z,
+  status: 'PLACED',
+  complete: false }
+[2019-11-10T17:19:07.713Z] [info] => [GET][/store/orders/]5dc8468bbf29a7c20cbfcc2a
+[2019-11-10T17:19:07.732Z] [info] => [GET][/store/inventory/] PLACED
+[2019-11-10T17:19:07.738Z] [info] => [DELETE][/store/orders/] 5dc8468bbf29a7c20cbfcc2a
+[2019-11-10T17:19:07.742Z] [info] => [DELETE][/store/orders/] 5dc8468bbf29a7c20cbfcc2a
+[2019-11-10T17:19:07.744Z] [warn] => [DELETE][/store/orders/:{orderId}] OrderID with Id 5dc8468bbf29a7c20cbfcc2a not found 

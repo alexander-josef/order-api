@@ -5,3 +5,4 @@ package-lock.json
 config/cert.pem
 config/key.pem
 config/keytemp.pem
+package-lock.json
