@@ -60,7 +60,7 @@
     "js2xmlparser": "^3.0.0",
     "lodash": "^4.17.11",
     "mocha": "^5.2.0",
-    "mongoose": "^5.4.0",
+    "mongoose": "^5.7.5",
     "mongoose-unique-validator": "^2.0.2",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
