@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from 'express'
 import * as halson from 'halson'
 import * as jwt from 'jsonwebtoken'
 import { UserModel } from '../schemas/user'
+import {OrderAPILogger} from '../utility/logger'
 import { formatOutput } from '../utility/orderApiUtility'
 
 // not needed after DB
@@ -12,8 +13,12 @@ import { formatOutput } from '../utility/orderApiUtility'
 export let getUser = (req: Request, res: Response, next: NextFunction) => {
   const username = req.params.username
 
+  OrderAPILogger.logger.info(`[Get][/users] ${username}`)
+
+
   UserModel.findOne({username:username}, (err, user) => {
     if (!user) {
+      OrderAPILogger.logger.info(`[GET] [/users/:{username}] user with username ${username} not found.`)
       return res.status(404).send()
     }
 
@@ -35,6 +40,9 @@ export let getUser = (req: Request, res: Response, next: NextFunction) => {
 
 export let addUser = (req: Request, res: Response, next: NextFunction) => {
   const newUser = new UserModel(req.body)
+
+  OrderAPILogger.logger.info(`[POST][/users] ${newUser}`)
+
   newUser.password = bcrypt.hashSync(newUser.password,10)
 
   newUser.save((error,user) => {
@@ -51,8 +59,12 @@ export let addUser = (req: Request, res: Response, next: NextFunction) => {
 export let updateUser = (req: Request, res: Response, next: NextFunction) => {
   const username = req.params.username
 
+  OrderAPILogger.logger.info(`[PATCH][/users] ${username}`)
+
   UserModel.findOne({username:username},(err,user) =>{
     if(!user) {
+
+      OrderAPILogger.logger.info(`[PATCH] [/users/:{username}] user with ${username} not found.`)
       return res.status(404).send()
     }
 
@@ -76,8 +88,11 @@ export let updateUser = (req: Request, res: Response, next: NextFunction) => {
 export let removeUser = (req: Request, res: Response, next: NextFunction) => {
   const username = req.params.username
 
+  OrderAPILogger.logger.warn(`[DELETE][/users] ${username}`)
+
   UserModel.findOne({username:username},(error,user) =>{
     if(!user){
+      OrderAPILogger.logger.info(`[DELETE] [/users/:{username}] user with username ${username} not found.`)
       return res.status(404).send()
     }
     user.remove(err => {
@@ -91,10 +106,13 @@ export let login = (req:Request, res:Response, next:NextFunction) =>{
   const username = req.query.username
   const password = req.query.password
 
+
+
   UserModel.findOne({username:username},(err,user) => {
     if(!user) {
       // tslint:disable-next-line: no-console
       console.log('not found')
+      OrderAPILogger.logger.info(`[GET][/users/login] no user found with username ${username}`)
       return res.status(404).send()
     }
 
@@ -106,6 +124,8 @@ export let login = (req:Request, res:Response, next:NextFunction) =>{
       return res.json({token:token})
 
     } else {
+      OrderAPILogger.logger.info(`[GET][/users/login] user not authorized ${username}`)
+
       return res.status(401).send()
     }
   })

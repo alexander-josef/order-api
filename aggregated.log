@@ -1,0 +1,40 @@
+[2019-11-10T15:59:01.854Z] [info] => [Get][/users] NO_USER
+[2019-11-10T15:59:01.861Z] [info] => [GET] [/users/:{username}] user with username NO_USER not found.
+[2019-11-10T15:59:01.897Z] [info] => [POST][/users] { _id: null,
+  email: 'unique_email@email.com',
+  firstName: 'John',
+  lastName: 'Doe',
+  password: 'password',
+  phone: '5555555',
+  userStatus: 1,
+  username: 'John' }
+[2019-11-10T15:59:01.979Z] [info] => [Get][/users] John
+[2019-11-10T15:59:01.985Z] [info] => [PATCH][/users] John
+[2019-11-10T15:59:01.994Z] [info] => [Get][/users] John Updated
+[2019-11-10T15:59:01.997Z] [info] => [PATCH][/users] Mary
+[2019-11-10T15:59:01.999Z] [info] => [PATCH] [/users/:{username}] user with Mary not found.
+[2019-11-10T15:59:02.001Z] [warn] => [DELETE][/users] John Updated
+[2019-11-10T15:59:02.011Z] [warn] => [DELETE][/users] Mary
+[2019-11-10T15:59:02.013Z] [info] => [DELETE] [/users/:{username}] user with username Mary not found.
+[2019-11-10T15:59:02.090Z] [info] => [GET][/store/orders/]000
+[2019-11-10T15:59:02.091Z] [info] => [GET][/store/orders/:{orderId}] Order 000 not found.
+[2019-11-10T15:59:02.120Z] [info] => [POST][/users] { _id: 5dc833c6a0cde4b9da69e01d,
+  username: 'OrderUser',
+  firstName: 'Order',
+  lastName: 'User',
+  email: 'order@myemail.com',
+  password: 'password',
+  phone: '5555555',
+  userStatus: 1 }
+[2019-11-10T15:59:02.196Z] [info] => [POST][/store/orders/] 5dc833c6a0cde4b9da69e01d
+[2019-11-10T15:59:02.218Z] [info] => [POST][/store/orders/] { _id: 5dc833c6a0cde4b9da69e01e,
+  userId: 5dc833c6a0cde4b9da69e01d,
+  quantity: 1,
+  shipDate: 2019-11-10T15:59:01.516Z,
+  status: 'PLACED',
+  complete: false }
+[2019-11-10T15:59:02.264Z] [info] => [GET][/store/orders/]5dc833c6a0cde4b9da69e01e
+[2019-11-10T15:59:02.289Z] [info] => [GET][/store/inventory/] PLACED
+[2019-11-10T15:59:02.297Z] [info] => [DELETE][/store/orders/] 5dc833c6a0cde4b9da69e01e
+[2019-11-10T15:59:02.311Z] [info] => [DELETE][/store/orders/] 5dc833c6a0cde4b9da69e01e
+[2019-11-10T15:59:02.312Z] [warn] => [DELETE][/store/orders/:{orderId}] OrderID with Id 5dc833c6a0cde4b9da69e01e not found 

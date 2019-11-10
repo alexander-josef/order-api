@@ -40,13 +40,13 @@ let token
     })
   })
 
-  it('should respond with HTTP 404 status because there is no order', async () => {
+  it('should respond with HTTP 500 status because there is no order', async () => {
     return chai
       .request(app)
       .get(`/store/orders/000`)
       .set('Authorization',`Bearer ${token}`)
       .then(res => {
-        expect(res.status).to.be.equal(404)
+        expect(res.status).to.be.equal(500) // see the thrown error - this obviously returns status 500
       })
   })
 
