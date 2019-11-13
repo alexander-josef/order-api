@@ -118,3 +118,53 @@
 [2019-11-10T17:19:07.738Z] [info] => [DELETE][/store/orders/] 5dc8468bbf29a7c20cbfcc2a
 [2019-11-10T17:19:07.742Z] [info] => [DELETE][/store/orders/] 5dc8468bbf29a7c20cbfcc2a
 [2019-11-10T17:19:07.744Z] [warn] => [DELETE][/store/orders/:{orderId}] OrderID with Id 5dc8468bbf29a7c20cbfcc2a not found 
+[2019-11-13T21:11:15.959Z] [info] => [Get][/users] NO_USER
+[2019-11-13T21:11:15.964Z] [info] => [GET] [/users/:{username}] user with username NO_USER not found.
+[2019-11-13T21:11:16.011Z] [info] => [POST][/users] { _id: null,
+  email: 'unique_email@email.com',
+  firstName: 'John',
+  lastName: 'Doe',
+  password: 'password',
+  phone: '5555555',
+  userStatus: 1,
+  username: 'John' }
+[2019-11-13T21:14:11.249Z] [info] => [Get][/users] NO_USER
+[2019-11-13T21:14:11.255Z] [info] => [GET] [/users/:{username}] user with username NO_USER not found.
+[2019-11-13T21:14:11.316Z] [info] => [POST][/users] { _id: null,
+  email: 'unique_email@email.com',
+  firstName: 'John',
+  lastName: 'Doe',
+  password: 'password',
+  phone: '5555555',
+  userStatus: 1,
+  username: 'John' }
+[2019-11-13T21:14:11.436Z] [info] => [Get][/users] John
+[2019-11-13T21:14:11.442Z] [info] => [PATCH][/users] John
+[2019-11-13T21:14:11.469Z] [info] => [Get][/users] John Updated
+[2019-11-13T21:14:11.475Z] [info] => [PATCH][/users] Mary
+[2019-11-13T21:14:11.478Z] [info] => [PATCH] [/users/:{username}] user with Mary not found.
+[2019-11-13T21:14:11.481Z] [warn] => [DELETE][/users] John Updated
+[2019-11-13T21:14:11.490Z] [warn] => [DELETE][/users] Mary
+[2019-11-13T21:14:11.493Z] [info] => [DELETE] [/users/:{username}] user with username Mary not found.
+[2019-11-13T21:14:11.647Z] [info] => [GET][/store/orders/]000
+[2019-11-13T21:14:11.650Z] [info] => [GET][/store/orders/:{orderId}] Order 000 not found.
+[2019-11-13T21:14:11.726Z] [info] => [POST][/users] { _id: 5dcc7223711db6270ea1d37c,
+  username: 'OrderUser',
+  firstName: 'Order',
+  lastName: 'User',
+  email: 'order@myemail.com',
+  password: 'password',
+  phone: '5555555',
+  userStatus: 1 }
+[2019-11-13T21:14:11.861Z] [info] => [POST][/store/orders/] 5dcc7223711db6270ea1d37c
+[2019-11-13T21:14:11.866Z] [info] => [POST][/store/orders/] { _id: 5dcc7223711db6270ea1d37d,
+  userId: 5dcc7223711db6270ea1d37c,
+  quantity: 1,
+  shipDate: 2019-11-13T21:14:10.762Z,
+  status: 'PLACED',
+  complete: false }
+[2019-11-13T21:14:11.903Z] [info] => [GET][/store/orders/]5dcc7223711db6270ea1d37d
+[2019-11-13T21:14:11.933Z] [info] => [GET][/store/inventory/] PLACED
+[2019-11-13T21:14:11.941Z] [info] => [DELETE][/store/orders/] 5dcc7223711db6270ea1d37d
+[2019-11-13T21:14:11.970Z] [info] => [DELETE][/store/orders/] 5dcc7223711db6270ea1d37d
+[2019-11-13T21:14:11.974Z] [warn] => [DELETE][/store/orders/:{orderId}] OrderID with Id 5dcc7223711db6270ea1d37d not found 

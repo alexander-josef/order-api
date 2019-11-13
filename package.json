@@ -46,7 +46,7 @@
     "@types/mongoose-unique-validator": "^1.0.1"
   },
   "dependencies": {
-    "@google-cloud/storage": "^2.3.4",
+    "@google-cloud/storage": "^2.5.0",
     "@types/node": "^10.12.12",
     "bcrypt": "3.0.0",
     "body-parser": "^1.18.3",
