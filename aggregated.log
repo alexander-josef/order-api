@@ -168,3 +168,80 @@
 [2019-11-13T21:14:11.941Z] [info] => [DELETE][/store/orders/] 5dcc7223711db6270ea1d37d
 [2019-11-13T21:14:11.970Z] [info] => [DELETE][/store/orders/] 5dcc7223711db6270ea1d37d
 [2019-11-13T21:14:11.974Z] [warn] => [DELETE][/store/orders/:{orderId}] OrderID with Id 5dcc7223711db6270ea1d37d not found 
+[2019-11-17T13:31:34.549Z] [info] => [Get][/users] NO_USER
+[2019-11-17T13:31:34.559Z] [info] => [GET] [/users/:{username}] user with username NO_USER not found.
+[2019-11-17T13:31:34.621Z] [info] => [POST][/users] { _id: null,
+  email: 'unique_email@email.com',
+  firstName: 'John',
+  lastName: 'Doe',
+  password: 'password',
+  phone: '5555555',
+  userStatus: 1,
+  username: 'John' }
+[2019-11-17T13:33:01.026Z] [info] => [Get][/users] NO_USER
+[2019-11-17T13:33:01.029Z] [info] => [GET] [/users/:{username}] user with username NO_USER not found.
+[2019-11-17T13:33:01.053Z] [info] => [POST][/users] { _id: null,
+  email: 'unique_email@email.com',
+  firstName: 'John',
+  lastName: 'Doe',
+  password: 'password',
+  phone: '5555555',
+  userStatus: 1,
+  username: 'John' }
+[2019-11-17T13:33:01.127Z] [info] => [Get][/users] John
+[2019-11-17T13:33:01.132Z] [info] => [PATCH][/users] John
+[2019-11-17T13:33:01.152Z] [info] => [Get][/users] John Updated
+[2019-11-17T13:33:01.156Z] [info] => [PATCH][/users] Mary
+[2019-11-17T13:33:01.157Z] [info] => [PATCH] [/users/:{username}] user with Mary not found.
+[2019-11-17T13:33:01.159Z] [warn] => [DELETE][/users] John Updated
+[2019-11-17T13:33:01.166Z] [warn] => [DELETE][/users] Mary
+[2019-11-17T13:33:01.168Z] [info] => [DELETE] [/users/:{username}] user with username Mary not found.
+[2019-11-17T13:33:01.244Z] [info] => [GET][/store/orders/]000
+[2019-11-17T13:33:01.245Z] [info] => [GET][/store/orders/:{orderId}] Order 000 not found.
+[2019-11-17T13:33:01.280Z] [info] => [POST][/users] { _id: 5dd14c0d0ae0cc855ce6eeef,
+  username: 'OrderUser',
+  firstName: 'Order',
+  lastName: 'User',
+  email: 'order@myemail.com',
+  password: 'password',
+  phone: '5555555',
+  userStatus: 1 }
+[2019-11-17T13:33:01.352Z] [info] => [POST][/store/orders/] 5dd14c0d0ae0cc855ce6eeef
+[2019-11-17T13:33:01.358Z] [info] => [POST][/store/orders/] { _id: 5dd14c0d0ae0cc855ce6eef0,
+  userId: 5dd14c0d0ae0cc855ce6eeef,
+  quantity: 1,
+  shipDate: 2019-11-17T13:33:00.707Z,
+  status: 'PLACED',
+  complete: false }
+[2019-11-17T13:33:01.376Z] [info] => [GET][/store/orders/]5dd14c0d0ae0cc855ce6eef0
+[2019-11-17T13:33:01.388Z] [info] => [GET][/store/inventory/] PLACED
+[2019-11-17T13:33:01.393Z] [info] => [DELETE][/store/orders/] 5dd14c0d0ae0cc855ce6eef0
+[2019-11-17T13:33:01.397Z] [info] => [DELETE][/store/orders/] 5dd14c0d0ae0cc855ce6eef0
+[2019-11-17T13:33:01.399Z] [warn] => [DELETE][/store/orders/:{orderId}] OrderID with Id 5dd14c0d0ae0cc855ce6eef0 not found 
+[2019-11-17T13:33:28.668Z] [info] => [Get][/users] NO_USER
+[2019-11-17T13:33:28.673Z] [info] => [GET] [/users/:{username}] user with username NO_USER not found.
+[2019-11-17T13:33:28.691Z] [info] => [POST][/users] { _id: null,
+  email: 'unique_email@email.com',
+  firstName: 'John',
+  lastName: 'Doe',
+  password: 'password',
+  phone: '5555555',
+  userStatus: 1,
+  username: 'John' }
+[2019-11-17T13:38:59.539Z] [info] => [POST][/users] { _id: 5dd14d73d614088596acb7f4,
+  username: 'John',
+  firstName: 'sameemail',
+  lastName: 'test',
+  email: 'test',
+  password: 'password',
+  phone: '2343432' }
+[2019-11-17T13:39:49.706Z] [info] => [POST][/users] { _id: 5dd14da5d614088596acb7f5,
+  username: 'John',
+  firstName: 'sameemail',
+  lastName: 'test',
+  email: 'test',
+  password: 'password',
+  phone: '2343432' }
+[2019-11-17T14:10:56.876Z] [info] => using URL: mongodb://undefined/undefined - user: undefined - pass: undefined
+[2019-11-17T14:12:08.966Z] [info] => using URL: mongodb://undefined/undefined - user: undefined - pass: undefined
+[2019-11-17T14:12:21.644Z] [info] => using URL: mongodb://localhost:27017/order-api - user: undefined - pass: undefined

@@ -8,21 +8,22 @@ import { APIRoute } from './routes/api'
 import { OrderRoute } from './routes/order'
 import { UserRoute } from './routes/user'
 import * as errorHandler from './utility/errorHandler'
+import { OrderAPILogger } from './utility/logger'
 
 class App {
   public app: express.Application
-  public userRoutes:UserRoute = new UserRoute()
-  public orderRoutes:OrderRoute = new OrderRoute()
-  public apiRoutes:APIRoute = new APIRoute()
-  public mongoUrl:string
-  public mongoUser:string
-  public mongoPass:string
+  public userRoutes: UserRoute = new UserRoute()
+  public apiRoutes: APIRoute = new APIRoute()
+  public orderRoutes: OrderRoute = new OrderRoute()
+  public mongoUrl: string
+  public mongoUser: string
+  public mongoPass: string
   // public mongoUrl: string = 'mongodb://localhost/order-api' -> use env variables instead
 
 
   constructor() {
-
     const path = `${__dirname}/../.env.${process.env.NODE_ENV}`
+
     dotenv.config({ path: path }) // -> this creates env variables according to the . file of the active environment the process is running in?
     this.mongoUrl = `mongodb://${process.env.MONGODB_URL_PORT}/${
       process.env.MONGODB_DATABASE
@@ -30,15 +31,17 @@ class App {
     this.mongoUser = `${process.env.MONGODB_USER}`
     this.mongoPass = `${process.env.MONGODB_PASS}`
 
+    OrderAPILogger.logger.info(`using URL: ${this.mongoUrl} - user: ${this.mongoUser} - pass: ${this.mongoPass}`)
+
     this.app = express() 
     this.app.use(bodyParser.json())
-    this.apiRoutes.routes(this.app)
     this.userRoutes.routes(this.app)
+    this.apiRoutes.routes(this.app)
     this.orderRoutes.routes(this.app)
     this.mongoSetup()
     this.app.use(
       expressWinston.errorLogger({
-        transports:[new winston.transports.Console()],
+        transports: [new winston.transports.Console()],
       })
     )
     this.app.use(errorHandler.logging)
@@ -47,21 +50,19 @@ class App {
   }
 
   private mongoSetup(): void {
-
     let options
 
-    if (process.env.NODE_ENV!=='prod') {
+    if (process.env.NODE_ENV !== 'prod') {
       options = {
-        useNewUrlParser : true,
+        useNewUrlParser: true,
       }
     } else {
       options = {
-        user:this.mongoUser,
-        pass:this.mongoUser,
-        useNewUrlParser: true
+        user: this.mongoUser,
+        pass: this.mongoPass,
+        useNewUrlParser: true,
       }
     }
-
     mongoose.connect(
       this.mongoUrl,
       options
