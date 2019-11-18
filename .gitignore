@@ -7,3 +7,4 @@ config/key.pem
 config/keytemp.pem
 package-lock.json
 aggregated.log
+gce.json
