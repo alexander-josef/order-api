@@ -17,4 +17,4 @@ const downloadFile = (
     .download(options)
 }
 
-downloadFile('envvars_order-api', '.env.prod', '.env.prod')
+downloadFile('envvars_order-api-258620', '.env.prod', '.env.prod')
