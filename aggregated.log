@@ -245,3 +245,21 @@
 [2019-11-17T14:10:56.876Z] [info] => using URL: mongodb://undefined/undefined - user: undefined - pass: undefined
 [2019-11-17T14:12:08.966Z] [info] => using URL: mongodb://undefined/undefined - user: undefined - pass: undefined
 [2019-11-17T14:12:21.644Z] [info] => using URL: mongodb://localhost:27017/order-api - user: undefined - pass: undefined
+[2019-11-18T21:46:24.093Z] [info] => using URL: mongodb://undefined/undefined - user: undefined - pass: undefined
+[2019-11-18T21:52:25.638Z] [info] => using URL: mongodb://undefined/undefined - user: undefined - pass: undefined
+[2019-11-19T07:16:11.020Z] [info] => using URL: mongodb://undefined/undefined - user: undefined - pass: undefined
+[2019-11-20T06:46:26.222Z] [info] => using URL: mongodb://undefined/undefined - user: undefined - pass: undefined
+[2019-11-20T06:48:32.801Z] [info] => using URL: mongodb://undefined/undefined - user: undefined - pass: undefined
+[2019-11-20T06:57:03.275Z] [info] => using URL: mongodb://undefined/undefined - user: undefined - pass: undefined
+[2019-11-20T06:58:05.914Z] [info] => using URL: mongodb://cluster0-shard-00-00-44cvx.gcp.mongodb.net:27017/order-api - user: order-api-user - pass: handsOnTypeScript3
+[2019-11-20T18:44:38.676Z] [info] => using URL: mongodb://undefined/undefined - user: undefined - pass: undefined
+[2019-11-20T18:46:59.873Z] [info] => using URL: mongodb://undefined/undefined - user: undefined - pass: undefined
+[2019-11-20T18:52:08.180Z] [info] => using URL: mongodb://mongodb+srv://order-api-user:handsOnTypeScript3@cluster0-44cvx.gcp.mongodb.net/test?retryWrites=true&w=majority/order-api - user: order-api-user - pass: handsOnTypeScript3
+[2019-11-20T19:48:42.351Z] [info] => using URL: mongodb+srv://order-api-user:handsOnTypeScript3@cluster0-44cvx.gcp.mongodb.net/test?retryWrites=true&w=majority/order-api - user: order-api-user - pass: handsOnTypeScript3
+[2019-11-20T19:49:09.971Z] [info] => [POST][/users] { _id: 5dd598b5b316d10e05c240a1,
+  username: 'John',
+  firstName: 'sameemail',
+  lastName: 'test',
+  email: 'test',
+  password: 'password',
+  phone: '2343432' }

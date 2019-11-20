@@ -19,7 +19,11 @@ class App {
         this.orderRoutes = new order_1.OrderRoute();
         const path = `${__dirname}/../.env.${process.env.NODE_ENV}`;
         dotenv.config({ path: path }); // -> this creates env variables according to the . file of the active environment the process is running in?
-        this.mongoUrl = `mongodb://${process.env.MONGODB_URL_PORT}/${process.env.MONGODB_DATABASE}`;
+        /*     this.mongoUrl = `mongodb://${process.env.MONGODB_URL_PORT}/${
+              process.env.MONGODB_DATABASE
+            }`
+        */
+        this.mongoUrl = `${process.env.MONGODB_URL_PORT}/${process.env.MONGODB_DATABASE}`;
         this.mongoUser = `${process.env.MONGODB_USER}`;
         this.mongoPass = `${process.env.MONGODB_PASS}`;
         logger_1.OrderAPILogger.logger.info(`using URL: ${this.mongoUrl} - user: ${this.mongoUser} - pass: ${this.mongoPass}`);
