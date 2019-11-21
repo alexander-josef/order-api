@@ -9,3 +9,4 @@ package-lock.json
 aggregated.log
 gce.json
 .env.prod
+Dockerfile.bak
