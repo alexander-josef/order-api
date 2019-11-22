@@ -263,3 +263,48 @@
   email: 'test',
   password: 'password',
   phone: '2343432' }
+[2019-11-21T18:47:06.791Z] [info] => using URL: mongodb://localhost:27017/order-api-test - user: undefined - pass: undefined
+[2019-11-21T18:47:07.618Z] [info] => [Get][/users] NO_USER
+[2019-11-21T18:47:07.621Z] [info] => [GET] [/users/:{username}] user with username NO_USER not found.
+[2019-11-21T18:47:07.658Z] [info] => [POST][/users] { _id: null,
+  email: 'unique_email@email.com',
+  firstName: 'John',
+  lastName: 'Doe',
+  password: 'password',
+  phone: '5555555',
+  userStatus: 1,
+  username: 'John' }
+[2019-11-21T18:47:07.730Z] [info] => [Get][/users] John
+[2019-11-21T18:47:07.735Z] [info] => [PATCH][/users] John
+[2019-11-21T18:47:07.759Z] [info] => [Get][/users] John Updated
+[2019-11-21T18:47:07.765Z] [info] => [PATCH][/users] Mary
+[2019-11-21T18:47:07.768Z] [info] => [PATCH] [/users/:{username}] user with Mary not found.
+[2019-11-21T18:47:07.770Z] [warn] => [DELETE][/users] John Updated
+[2019-11-21T18:47:07.779Z] [warn] => [DELETE][/users] Mary
+[2019-11-21T18:47:07.783Z] [info] => [DELETE] [/users/:{username}] user with username Mary not found.
+[2019-11-21T18:47:07.855Z] [info] => [GET][/store/orders/]000
+[2019-11-21T18:47:07.856Z] [info] => [GET][/store/orders/:{orderId}] Order 000 not found.
+[2019-11-21T18:47:07.876Z] [info] => [POST][/users] { _id: 5dd6dbabb0f7593400758bbc,
+  username: 'OrderUser',
+  firstName: 'Order',
+  lastName: 'User',
+  email: 'order@myemail.com',
+  password: 'password',
+  phone: '5555555',
+  userStatus: 1 }
+[2019-11-21T18:47:07.945Z] [info] => [POST][/store/orders/] 5dd6dbabb0f7593400758bbc
+[2019-11-21T18:47:07.949Z] [info] => [POST][/store/orders/] { _id: 5dd6dbabb0f7593400758bbd,
+  userId: 5dd6dbabb0f7593400758bbc,
+  quantity: 1,
+  shipDate: 2019-11-21T18:47:07.322Z,
+  status: 'PLACED',
+  complete: false }
+[2019-11-21T18:47:07.970Z] [info] => [GET][/store/orders/]5dd6dbabb0f7593400758bbd
+[2019-11-21T18:47:07.987Z] [info] => [GET][/store/inventory/] PLACED
+[2019-11-21T18:47:07.991Z] [info] => [DELETE][/store/orders/] 5dd6dbabb0f7593400758bbd
+[2019-11-21T18:47:07.998Z] [info] => [DELETE][/store/orders/] 5dd6dbabb0f7593400758bbd
+[2019-11-21T18:47:08.000Z] [warn] => [DELETE][/store/orders/:{orderId}] OrderID with Id 5dd6dbabb0f7593400758bbd not found 
+[2019-11-22T19:56:04.091Z] [info] => using URL: mongodb://localhost:27017/order-api - user: undefined - pass: undefined
+[2019-11-22T20:00:10.291Z] [info] => [Get][/users] john
+[2019-11-22T20:00:10.297Z] [info] => [GET] [/users/:{username}] user with username john not found.
+[2019-11-22T20:00:18.910Z] [info] => [Get][/users] John

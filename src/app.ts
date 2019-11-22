@@ -62,6 +62,7 @@ class App {
         useNewUrlParser: true,
       }
     } else {
+      this.mongoUrl = `${process.env.MONGODB_URL_PORT}` // different URI for Atlas connection in prod
       options = {
         user: this.mongoUser,
         pass: this.mongoPass,
