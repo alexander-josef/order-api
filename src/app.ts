@@ -30,13 +30,9 @@ class App {
     }`
 */
 
-    this.mongoUrl = `${process.env.MONGODB_URL_PORT}/${
-      process.env.MONGODB_DATABASE
-    }`
+    this.mongoUrl = `${process.env.MONGODB_URL_PORT}/${process.env.MONGODB_DATABASE}` // connection string for dev/test
     this.mongoUser = `${process.env.MONGODB_USER}`
     this.mongoPass = `${process.env.MONGODB_PASS}`
-
-    OrderAPILogger.logger.info(`using URL: ${this.mongoUrl} - user: ${this.mongoUser} - pass: ${this.mongoPass}`)
 
     this.app = express() 
     this.app.use(bodyParser.json())
@@ -61,14 +57,16 @@ class App {
       options = {
         useNewUrlParser: true,
       }
-    } else {
-      this.mongoUrl = `${process.env.MONGODB_URL_PORT}` // different URI for Atlas connection in prod
+    } else { // different handling for prod (hosted atlas mongoDB with username / password)
+      this.mongoUrl = `${process.env.MONGODB_URL_PORT}/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority` // different URI for Atlas connection in prod
       options = {
         user: this.mongoUser,
         pass: this.mongoPass,
         useNewUrlParser: true,
       }
     }
+    OrderAPILogger.logger.info(`using connection string: ${this.mongoUrl} - user: ${this.mongoUser} - pass: ${this.mongoPass}`)
+
     mongoose.connect(
       this.mongoUrl,
       options
